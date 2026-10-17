@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Una ruleta interactiva para ayudarte a tomar decisiones al azar."
+  >
+
+  <title>La Ruleta de Decisiones</title>
+
+  <!-- Conexión con el diseño -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Fuente del proyecto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Conexión con la lógica de la ruleta -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page-background"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Inicio">
+      <span class="brand-icon">✳</span>
+      <span>Decide<span class="brand-accent">.</span></span>
+    </a>
+
+    <span class="header-label">
+      TU ESPACIO PARA DECIDIR
+    </span>
+  </header>
+
+  <main class="main-container">
+
+    <section class="intro">
+      <span class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        UNA NUEVA FORMA DE ELEGIR
+      </span>
+
+      <h1>
+        Deja que el azar<br>
+        <span>te dé una respuesta.</span>
+      </h1>
+
+      <p>
+        A veces elegir es lo más difícil.
+        Escribe tus opciones, respira y deja que la ruleta decida.
+      </p>
+    </section>
+
+    <section class="workspace">
+
+      <!-- Panel de configuración -->
+      <section class="card setup-card">
+        <div class="section-heading">
+          <div class="heading-icon">✎</div>
+
+          <div>
+            <span class="section-kicker">PRIMER PASO</span>
+            <h2>Prepara tu decisión</h2>
+          </div>
+        </div>
+
+        <label for="question">¿Qué necesitas decidir?</label>
+
+        <textarea
+          id="question"
+          placeholder="Ej.: ¿Qué hago este fin de semana?"
+          maxlength="240"
+        ></textarea>
+
+        <div class="field-heading">
+          <label for="newOption">Tus opciones</label>
+          <span id="optionCounter">4 opciones</span>
+        </div>
+
+        <div class="add-option">
+          <input
+            id="newOption"
+            type="text"
+            placeholder="Escribe una opción..."
+            maxlength="80"
+          >
+
+          <button id="addBtn" class="button button-dark" type="button">
+            Añadir <span>+</span>
+          </button>
+        </div>
+
+        <p class="helper-text">
+          Añade entre 2 y 20 opciones. Puedes editarlas cuando quieras.
+        </p>
+
+        <div id="optionList" class="option-list"></div>
+
+        <div id="validationHint" class="status-message" role="status">
+          ¡Todo listo para comenzar!
+        </div>
+
+        <div class="setup-actions">
+          <button id="exampleBtn" class="button button-light" type="button">
+            Probar ejemplo
+          </button>
+
+          <button id="resetBtn" class="button button-text" type="button">
+            Limpiar
+          </button>
+        </div>
+      </section>
+
+      <!-- Panel de la ruleta -->
+      <section class="card wheel-card">
+        <div class="section-heading wheel-heading">
+          <div class="heading-icon wheel-heading-icon">✳</div>
+
+          <div>
+            <span class="section-kicker">SEGUNDO PASO</span>
+            <h2>La ruleta</h2>
+          </div>
+
+          <span class="live-badge">
+            <span></span>
+            EN VIVO
+          </span>
+        </div>
+
+        <p class="wheel-description">
+          Todas tus opciones tienen la oportunidad de ganar.
+        </p>
+
+        <div class="wheel-container">
+          <div class="wheel-pointer" aria-hidden="true"></div>
+
+
+        <div class="wheel-wrap">
+          <div class="pointer"></div>
+          <canvas id="wheel" width="700" height="700"></canvas>
+          </div>
+          
+          <div class="wheel-center" aria-hidden="true">
+            <span>✳</span>
+          </div>
+        </div>
+
+        <button
+          id="spinBtn"
+          class="button spin-button"
+          type="button"
+          disabled
+        >
+          <span class="spin-icon">↻</span>
+          Girar la ruleta
+        </button>
+
+        <div id="resultBox" class="result-box" aria-live="polite">
+          <span class="result-label">TU RESULTADO</span>
+
+          <div id="resultValue" class="result-value">
+            <span class="result-placeholder">
+              Tu respuesta aparecerá aquí
+            </span>
+          </div>
+
+          <button
+            id="againBtn"
+            class="button button-light again-button"
+            type="button"
+            hidden
+          >
+            Girar otra vez ↻
+          </button>
+        </div>
+
+        <p id="questionEcho" class="question-echo">
+          Tu pregunta aparecerá aquí.
+        </p>
+      </section>
+
+    </section>
+
+    <section class="bottom-note">
+      <span>✦</span>
+      No existe una decisión perfecta. A veces, solo necesitas comenzar.
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>DECIDE.</span>
+    <span>Hecho para esos momentos de indecisión.</span>
+  </footer>
+</body>
+</html>
