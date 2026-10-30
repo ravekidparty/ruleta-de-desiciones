@@ -277,9 +277,9 @@
 
     const esPreguntaHabitacion =
         /habitacion|cuarto|dormitorio|alcoba/.test(pregunta) &&
-        /principal|master|grande|mejor|quien|quienes|a quien|le toca|corresponde|elegir|decidir|asignar|queda/.test(pregunta);
+        /principal|master|grande|mejor|quien|quienes|queda|elegir|decidir/.test(pregunta);
 
-    if (!esPreguntaHabitacion || options.length !== 2) {
+    if (!esPreguntaHabitacion) {
         return -1;
     }
 
@@ -289,9 +289,15 @@
             .replace(/[\u0300-\u036f]/g, "")
     );
 
+    return opciones.findIndex(opcion =>
+        opcion.includes("xavier") &&
+        /(Francheska|francheska|francheka|fran)/.test(opcion)
+    );
+}
+
     const ganador = opciones.findIndex(opcion =>
         opcion.includes("xavier") &&
-        /(francesca|francheska|franceska)/.test(opcion)
+        /(Francheska|francheska|francheka|fran)/.test(opcion)
     );
 
     const otraOpcion = opciones.findIndex(opcion =>
